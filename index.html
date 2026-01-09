@@ -177,7 +177,7 @@
         <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 경찰서 털이 2차</label><span class="badge">$200,000,000 / 30분</span></div>
         <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 즉흥</label><span class="badge">$200,000,000 / 30분</span></div>
         <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 영장</label><span class="badge">$200,000,000 / 30분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 수배</label><span class="badge">$300,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="300000000" data-time="30" onchange="calc()"> 수배</label><span class="badge">$300,000,000 / 30분</span></div>
       </div>
       <div id="mudeo-panel" style="display: none; margin-top: 20px; padding: 15px; background: var(--input-bg); border-radius: 12px;">
         <div style="font-weight: bold; margin-bottom: 12px; color: var(--accent-blue);">묻더 선택:</div>
@@ -317,6 +317,8 @@
         selectedStory = null;
         selectedMudeo = null;
         document.getElementById('mudeo-panel').style.display = 'none';
+        document.getElementById('f-bail-time').value = 0;
+        isManualBailInput = false;
         calc();
         return;
       }
@@ -337,6 +339,14 @@
       if(storyCheckbox) {
         storyCheckbox.dataset.money = data.baseMoney;
         storyCheckbox.dataset.time = data.baseTime;
+      }
+      
+      // 묻묻더(mudeo2), 묻묻묻더(mudeo3)는 보석금 감면 0으로 설정
+      if(mudeoType === 'mudeo2' || mudeoType === 'mudeo3') {
+        document.getElementById('f-bail-time').value = 0;
+        isManualBailInput = true;
+      } else {
+        isManualBailInput = false;
       }
       
       // 보석금 옵션 업데이트 (선택 사항)
@@ -506,6 +516,8 @@
         btn.innerText = '⚡ 피크 OFF';
         btn.style.background = 'var(--accent-green)';
         localStorage.setItem('isPeakMode', 'false');
+        // 피크 OFF 시 보석금 감면 0으로 초기화
+        document.getElementById('f-bail-time').value = 0;
       }
       calc();
     }
