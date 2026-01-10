@@ -386,10 +386,11 @@
         const inputUid = document.getElementById('notice-uid')?.value || uid;
         const attendanceTime = getAttendanceTime();
         const currentTime = getCurrentTime();
+        const attendanceTime30 = getAttendanceTime30();
         
         return {
             "출석 공지": `/팩션공지 치즈 경찰청에서 안내드립니다. ${inputName}(${inputUid})님 ${attendanceTime} 까지 경찰청 사유지로 출석 바랍니다. - 치즈 경찰청 -`,
-            "수배 공지": `/팩션공지 ${inputUid} ${inputName} 님 출석 거부 및 불응으로 인해 현시간(${currentTime})부로 수배로 전환됩니다`,
+            "수배 공지": `/팩션공지\n닉네임 : ${inputName}\n고유번호 : ${inputUid}\n현재시각: ${currentTime} ~ ${attendanceTime30} (30분)\n- 치즈 경찰청 -`,
             "경털1차": `/팩션공지 치즈 경찰청에서 안내드립니다.\n남부 경찰청 서버실에서 강도 발생으로 서버실 위치로부터 2블럭 이내 접근 시 경고 없이 무통보 사살됨을 알려드립니다.\n\n- 치즈 경찰청 -`,
             "경털2차": `/팩션공지 치즈 경찰청에서 안내드립니다.\n217번지 경찰청에서 강도 발생으로 217번지로부터 2블럭 이내 접근 시 경고 없이 무통보 사살됨을 알려드립니다..\n\n- 치즈 경찰청 -`,
             "697": `/팩션공지 치즈 경찰청에서 안내드립니다.\n697번지 보석상에서 강도 발생으로 697번지로부터 2블럭 이내 접근 시 경고 없이 무통보 사살됨을 알려드립니다.\n\n- 치즈 경찰청 -`,
@@ -408,14 +409,22 @@
         now.setMinutes(now.getMinutes() + 5);
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
-        return `${hours}:${minutes}`;
+        return `${hours}시${minutes}분`;
+    }
+
+    function getAttendanceTime30() {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() + 30);
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        return `${hours}시${minutes}분`;
     }
 
     function getCurrentTime() {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
-        return `${hours}:${minutes}`;
+        return `${hours}시${minutes}분`;
     }
 
     function renderNotices() {
