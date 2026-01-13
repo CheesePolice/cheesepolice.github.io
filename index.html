@@ -589,8 +589,7 @@
         fd.append("sheetType", "rp"); fd.append("uid", u); fd.append("userName", n);
         fd.append("rpType", document.getElementById('r-type').value); fd.append("result", selectedRes);
         
-        fetch(SCRIPT_URL, { method: 'POST', body: fd })
-        .then(res => { if(!res.ok) throw new Error(`서버 오류(${res.status})`); return res; })
+        fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' })
         .then(() => alert("✅ RP 기록 완료!"))
         .catch(e => alert("오류 발생: " + e.message))
         .finally(() => {
@@ -616,8 +615,7 @@
         fd.append("policeUid", localStorage.getItem('myUid')); fd.append("policeName", localStorage.getItem('myName'));
         fd.append("items", items.join(", ")); fd.append("totalFine", document.getElementById('disp-money').innerText); fd.append("totalTime", document.getElementById('disp-time').innerText);
         
-        fetch(SCRIPT_URL, { method: 'POST', body: fd })
-        .then(res => { if(!res.ok) throw new Error(`서버 오류(${res.status})`); return res; })
+        fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' })
         .then(() => { 
           alert("✅ 벌금 시트 등록 완료!"); 
           resetCalc(); 
@@ -645,8 +643,7 @@
         let fd = new FormData();
         fd.append("sheetType", "commute"); fd.append("commuteAction", type); fd.append("uid", u); fd.append("userName", n);
         
-        fetch(SCRIPT_URL, { method: 'POST', body: fd })
-        .then(res => { if(!res.ok) throw new Error(`서버 오류(${res.status})`); return res; })
+        fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' })
         .then(() => { 
           localStorage.setItem('isWorking', !isWorking); 
           alert(`✅ ${type} 완료!`); 
