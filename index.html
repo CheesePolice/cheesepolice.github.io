@@ -227,21 +227,15 @@
       <h2>📢 사이드 공지 생성기</h2>
       <div id="notice-grid" class="notice-grid"></div>
       <div id="notice-input-section" style="display: none; margin-top: 20px; padding: 15px; background: var(--input-bg); border-radius: 12px; margin-bottom: 20px;">
-<!-- 영장 RP 전용 입력 -->
-<div id="warrant-input-section" style="display:none; margin-top:15px;">
-  <input type="text" id="warrant-faction" placeholder="팩션 이름 (예: 꿀벌 경찰청)" style="margin-bottom:10px">
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-    <input type="text" id="warrant-target-name" placeholder="영장 대상자 닉네임">
-    <input type="text" id="warrant-target-uid" placeholder="영장 대상자 고번">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <input type="text" id="notice-uid" placeholder="고유번호" onchange="updateNoticePreview()" style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--container-bg); color: var(--text-main); font-size: 14px;">
+          <input type="text" id="notice-name" placeholder="닉네임" onchange="updateNoticePreview()" style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--container-bg); color: var(--text-main); font-size: 14px;">
+        </div>
+      </div>
+      <textarea id="notice-preview" style="height: 350px; text-align: left; padding: 20px; line-height: 1.6; margin-top:20px; font-weight: bold; font-family: 'Pretendard', sans-serif;"></textarea>
+      <button class="submit-btn" style="background: var(--accent-blue);" onclick="copyNotice()">📋 복사하기</button>
+    </div>
   </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-    <input type="text" id="warrant-sniper-name" placeholder="경찰 스나이퍼 닉네임">
-    <input type="text" id="warrant-sniper-uid" placeholder="경찰 스나이퍼 고번">
-  </div>
-</div>
-
 
   <script>
     // ⚠️ 구글 웹 앱 URL을 여기에 붙여넣으세요.
@@ -376,44 +370,21 @@
       calc();
     } 
 
-function getNoticeTemplates() {
-    const name = localStorage.getItem('myName') || "미입력";
-    const uid = localStorage.getItem('myUid') || "미입력";
-
-    const inputName = document.getElementById('notice-name')?.value || name;
-    const inputUid  = document.getElementById('notice-uid')?.value || uid;
-
-    const currentTime = getCurrentTime();
-    const attendanceTime30 = getAttendanceTime30();
-
-    // 영장 RP 입력값
-    const faction = document.getElementById('warrant-faction')?.value || '꿀벌 경찰청';
-    const targetName = document.getElementById('warrant-target-name')?.value || '닉네임';
-    const targetUid  = document.getElementById('warrant-target-uid')?.value || '고번';
-    const sniperName = document.getElementById('warrant-sniper-name')?.value || '닉네임';
-    const sniperUid  = document.getElementById('warrant-sniper-uid')?.value || '고번';
-
-    return {
-        "출석 공지": `/경찰청 꿀벌 경찰청에서 안내드립니다. ${inputName}(${inputUid})님 출석 바랍니다. - 꿀벌 경찰청 -`,
-
-        "수배 공지": `/경찰청 꿀벌 경찰청에서 안내드립니다.
-닉네임 : ${inputName}
-고유번호 : ${inputUid}
-님 출석 불응 하셔서
-현재시각: ${currentTime} ~ ${attendanceTime30} (30분)
-까지 수배RP 진행됩니다.
-- 꿀벌 경찰청 -`,
-
-        "영장 RP 공지": `/경찰청 현시간부로 30분간 ${faction} 사유지에서 영장RP 진행하겠습니다.
-
-영장대상자 :
-${targetName} / ${targetUid}
-
-경찰 스나이퍼 사용자 :
-${sniperName} / ${sniperUid}`
-    };
-}
-
+    function getNoticeTemplates() {
+        const name = localStorage.getItem('myName') || "미입력";
+        const uid = localStorage.getItem('myUid') || "미입력";
+        const inputName = document.getElementById('notice-name')?.value || name;
+        const inputUid = document.getElementById('notice-uid')?.value || uid;
+        const attendanceTime = getAttendanceTime();
+        const currentTime = getCurrentTime();
+        const attendanceTime30 = getAttendanceTime30();
+        
+        return {
+            "출석 공지": `/경찰청 꿀벌 경찰청에서 안내드립니다. ${inputName}(${inputUid})님 ${attendanceTime} 까지 경찰청 사유지로 출석 바랍니다. - 꿀벌 경찰청 -`,
+            "수배 공지": `/경찰청 꿀벌 경찰청에서 안내드립니다. \n닉네임 : ${inputName}\n고유번호 : ${inputUid}\n님 출석 불응 하셔서 \n현재시각: ${currentTime} ~ ${attendanceTime30} (30분)\n까지 수배RP 진행됩니다- 꿀벌 경찰청 -`,
+            "영장 공지": `/경찰청 꿀벌 경찰청에서 안내드립니다. 현 시간부로 30분간 [팩션이름] 사유지에서 영장RP 진행하겠습니다 \n영장 대상자 : ${inputName}\n고유번호 : ${inputUid}\n님 경찰 스나이퍼 사용자 : [닉네임] [고유번호]
+        };
+    }
 
     function getAttendanceTime() {
         const now = new Date();
@@ -452,20 +423,14 @@ ${sniperName} / ${sniperUid}`
                 
                 // 출석 공지 또는 수배 공지일 때 입력칸 표시
                 const inputSection = document.getElementById('notice-input-section');
-                const warrantSection = document.getElementById('warrant-input-section');
                 if(k === '출석 공지' || k === '수배 공지') {
                     inputSection.style.display = 'block';
                     document.getElementById('notice-uid').value = localStorage.getItem('myUid') || '';
                     document.getElementById('notice-name').value = localStorage.getItem('myName') || '';
-                    warrantSection.style.display = 'none';
-                } else if (k === '영장 RP 공지') {
-                      inputSection.style.display = 'none';
-                      warrantSection.style.display = 'block';
+                } else {
+                    inputSection.style.display = 'none';
                 }
-                 else {
-                     inputSection.style.display = 'none';
-                     warrantSection.style.display = 'none';
-                }
+                
                 updateNoticePreview();
             };
             g.appendChild(b);
