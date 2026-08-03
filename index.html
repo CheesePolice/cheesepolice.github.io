@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>꿀벌 경찰청 통합 기록지</title>
+  <title>CHEESE 경찰청 통합 기록지</title>
   <style>
     :root {
         --bg-color: #f0f2f5; --container-bg: #ffffff; --text-main: #333333; --text-sub: #666666;
@@ -110,13 +110,15 @@
       <div class="form-group">
         <label>RP 종류</label>
         <select id="r-type">
-          <option value="ATM">ATM</option>
-          <option value="편의점">편의점</option>
+          <option value="ATM">ATM 강도</option>
+          <option value="편의점">편의점 강도</option>
           <option value="빈집털이">빈집털이</option>
-          <option value="빈집털이 대형">빈집털이 대형</option>
           <option value="남부은행">남부은행</option>
           <option value="보석상">보석상</option>
-          <option value="대형 마트">대형 마트</option>
+          <option value="경찰서 털이1차">경찰서 털이1차</option>
+          <option value="경찰서 털이2차">경찰서 털이2차</option>
+          <option value="도주">도주</option>
+          <option value="즉흥">즉흥</option>
           <option value="수배">수배</option>
           <option value="영장">영장</option>
         </select>
@@ -143,31 +145,39 @@
       <div class="tab-menu">
         <button class="tab-btn tab-active" onclick="openCalcTab(event, 'tab-traffic')">🚦 교통</button>
         <button class="tab-btn" onclick="openCalcTab(event, 'tab-story')">🔫 스토리</button>
-        <button class="tab-btn" onclick="openCalcTab(event, 'tab-strong')">🕋 형법</button>
-        <button class="tab-btn" onclick="openCalcTab(event, 'tab-police')">👮 공무원법</button>
+        <button class="tab-btn" onclick="openCalcTab(event, 'tab-strong')">🕋 공무원</button>
       </div>
 
       <div id="tab-traffic" class="calc-list" style="display: block;">
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="80000000" data-time="0" onchange="calc()"> 신호 위반</label><span class="badge">$80,000,000</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="80000000" data-time="0" onchange="calc()"> 속도 위반</label><span class="badge">$80,000,000</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="0" onchange="calc()"> 차선위반 및 역주행</label><span class="badge">$50,000,000</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="0" onchange="calc()"> 불법 유턴</label><span class="badge">$50,000,000</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="0" onchange="calc()"> 소음 공해</label><span class="badge">$50,000,000</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="0" onchange="calc()"> 불법 주정차</label><span class="badge">$50,000,000</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="150000000" data-time="0" onchange="calc()"> 스턴트</label><span class="badge">$150,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 신호 위반</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 속도 위반</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 역주행</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 차선 위반</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 중앙선 침범</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 스턴트</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="15000000" data-time="0" onchange="calc()"> 보복 운전</label><span class="badge">$15,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="10000000" data-time="0" onchange="calc()"> 인도 주행</label><span class="badge">$10,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="10000000" data-time="0" onchange="calc()"> 공공기물 파손</label><span class="badge">$10,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="12000000" data-time="0" onchange="calc()"> 불법 유턴</label><span class="badge">$12,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="10000000" data-time="0" onchange="calc()"> 소음 공해</label><span class="badge">$10,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="20" onchange="calc()"> 폭 주</label><span class="badge">$30,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="17000000" data-time="10" onchange="calc()"> 음주 운전</label><span class="badge">$17,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="10000000" data-time="0" onchange="calc()"> 승차 방법 제한</label><span class="badge">$10,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="10000000" data-time="0" onchange="calc()"> 운전중 핸드폰 사용</label><span class="badge">$10,000,000</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="10000000" data-time="0" onchange="calc()"> 비정상 도로 진입</label><span class="badge">$10,000,000</span></div>
       </div>
 
       <div id="tab-story" class="calc-list" style="display: none;">
         <div class="item" onclick="handleStoryClick(this, 'ATM')"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10"> ATM</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item" onclick="handleStoryClick(this, '편의점')"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="10"> 편의점</label><span class="badge">$200,000,000 / 10분</span></div>
-        <div class="item" onclick="handleStoryClick(this, '빈집 털이')"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="0"> 빈집 털이</label><span class="badge">$100,000,000 / 0분</span></div>
-        <div class="item" onclick="handleStoryClick(this, '빈집 털이 대형')"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="0"> 빈집 털이 대형</label><span class="badge">$200,000,000 / 0분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="600000000" data-time="10" onchange="calc()"> 남부 은행</label><span class="badge">$600,000,000 / 10분</span></div>
-        <div class="item" onclick="handleStoryClick(this, '보석상')"><label><input type="checkbox" class="calc-check" data-money="400000000" data-time="10"> 보석상</label><span class="badge">$400,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="500000000" data-time="10" onchange="calc()"> 대형 마트</label><span class="badge">$500,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="2200000000" data-time="30" onchange="calc()"> 영장</label><span class="badge">$2,200,000,000 / 30분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="900000000" data-time="10" onchange="calc()"> 영장 지원자</label><span class="badge">$900,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="2000000000" data-time="30" onchange="calc()"> 수배</label><span class="badge">$2.000,000,000 / 30분</span></div>
+        <div class="item" onclick="handleStoryClick(this, '편의점')"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="15"> 편의점</label><span class="badge">$100,000,000 / 15분</span></div>
+        <div class="item" onclick="handleStoryClick(this, '빈집 털이')"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="15"> 빈집 털이</label><span class="badge">$100,000,000 / 15분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="150000000" data-time="30" onchange="calc()"> 남부 은행</label><span class="badge">$150,000,000 / 30분</span></div>
+        <div class="item" onclick="handleStoryClick(this, '보석상')"><label><input type="checkbox" class="calc-check" data-money="150000000" data-time="20"> 보석상</label><span class="badge">$150,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 경찰서 털이 1차</label><span class="badge">$200,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 경찰서 털이 2차</label><span class="badge">$200,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 즉흥</label><span class="badge">$200,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="30" onchange="calc()"> 영장</label><span class="badge">$200,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="300000000" data-time="30" onchange="calc()"> 수배</label><span class="badge">$300,000,000 / 30분</span></div>
       </div>
       <div id="mudeo-panel" style="display: none; margin-top: 20px; padding: 15px; background: var(--input-bg); border-radius: 12px;">
         <div style="font-weight: bold; margin-bottom: 12px; color: var(--accent-blue);">묻더 선택:</div>
@@ -177,33 +187,32 @@
       </div>
 
       <div id="tab-strong" class="calc-list" style="display: none;">
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="700000000" data-time="10" onchange="calc()"> 폭주죄</label><span class="badge">$700,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="10" onchange="calc()"> 도주죄</label><span class="badge">$200,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10" onchange="calc()"> 영업 방해</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="10" onchange="calc()"> 시민 모욕 및 명예훼손</label><span class="badge">$50,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="5" onchange="calc()"> 시민 차량 파손</label><span class="badge">$50,000,000 / 5분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="10" onchange="calc()"> 시민 차량 절도</label><span class="badge">$50,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="5" onchange="calc()"> 뺑소니</label><span class="badge">$100,000,000 / 5분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10" onchange="calc()"> 시민 폭행</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10" onchange="calc()"> 시민 납치</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="300000000" data-time="10" onchange="calc()"> 시민 살인</label><span class="badge">$300,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="700000000" data-time="10" onchange="calc()"> 폭주죄</label><span class="badge">$700,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="5" onchange="calc()"> 택시 무임승차</label><span class="badge">$200,000,000 / 5분</span></div>
-    </div>
-
-      <div id="tab-police" class="calc-list" style="display: none;">
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="10" onchange="calc()"> 공무원 모욕</label><span class="badge">$200,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="5" onchange="calc()"> 공무 집행 방해</label><span class="badge">$50,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10" onchange="calc()"> 공무원 차량 파손</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="10" onchange="calc()"> 공무원 사칭</label><span class="badge">$50,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10" onchange="calc()"> 사유지 무단 침입</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="300000000" data-time="10" onchange="calc()"> 공무원 폭행</label><span class="badge">$300,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="400000000" data-time="10" onchange="calc()"> 공무원 차량 절도</label><span class="badge">$400,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="400000000" data-time="20" onchange="calc()"> 공무원 살인 및 살인 미수</label><span class="badge">$400,000,000 / 20분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="100000000" data-time="10" onchange="calc()"> 불법 물건 소지</label><span class="badge">$100,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="150000000" data-time="10" onchange="calc()"> 불법 무기 소지</label><span class="badge">$150,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="300000000" data-time="10" onchange="calc()"> 불법 무기 사용</label><span class="badge">$300,000,000 / 10분</span></div>
-        <div class="item"><label><input type="checkbox" class="calc-check" data-money="200000000" data-time="5" onchange="calc()"> 불법 물건 언급</label><span class="badge">$200,000,000 / 5분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="20" onchange="calc()"> 시민 살인</label><span class="badge">$50,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="70000000" data-time="30" onchange="calc()"> 공무원 살인</label><span class="badge">$70,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="20" onchange="calc()"> 시민 살인 미수</label><span class="badge">$30,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="50000000" data-time="30" onchange="calc()"> 공무원 살인 미수</label><span class="badge">$50,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="20000000" data-time="15" onchange="calc()"> 시민 폭행</label><span class="badge">$20,000,000 / 15분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="40000000" data-time="20" onchange="calc()"> 공무원 폭행</label><span class="badge">$40,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="60000000" data-time="25" onchange="calc()"> 공무원 단체 폭행</label><span class="badge">$60,000,000 / 25분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="20000000" data-time="20" onchange="calc()"> 시민 차량 절도</label><span class="badge">$20,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="40000000" data-time="30" onchange="calc()"> 공무원 차량 절도</label><span class="badge">$40,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="10" onchange="calc()"> 공무원 재물 손괴</label><span class="badge">$30,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="60000000" data-time="10" onchange="calc()"> 시민 납치</label><span class="badge">$60,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="30" onchange="calc()"> 불법물품 및 무기 소지</label><span class="badge">$30,000,000 / 30분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="15000000" data-time="10" onchange="calc()"> 횡령 및 사기</label><span class="badge">$15,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="40000000" data-time="25" onchange="calc()"> 공무원 사칭</label><span class="badge">$40,000,000 / 25분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="20000000" data-time="20" onchange="calc()"> 허위사실 유포</label><span class="badge">$20,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="20" onchange="calc()"> 거짓진술</label><span class="badge">$30,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="20000000" data-time="10" onchange="calc()"> 사유지 무단 침입</label><span class="badge">$20,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="20" onchange="calc()"> 공무원 거짓 호출</label><span class="badge">$30,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="10" onchange="calc()"> 집행중 도주</label><span class="badge">$30,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="30000000" data-time="15" onchange="calc()"> 공무집행 방해</label><span class="badge">$30,000,000 / 15분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="40000000" data-time="10" onchange="calc()"> 공무 지시 불이행</label><span class="badge">$40,000,000 / 10분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="70000000" data-time="20" onchange="calc()"> 공무 지시 불이행 도주</label><span class="badge">$70,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="60000000" data-time="40" onchange="calc()"> 공무원 뇌물 수수</label><span class="badge">$60,000,000 / 40분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="40000000" data-time="20" onchange="calc()"> 공무원 명예훼손</label><span class="badge">$40,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="25000000" data-time="20" onchange="calc()"> 증거 인멸</label><span class="badge">$25,000,000 / 20분</span></div>
+        <div class="item"><label><input type="checkbox" class="calc-check" data-money="20000000" data-time="10" onchange="calc()"> 스토킹</label><span class="badge">$20,000,000 / 10분</span></div>
       </div>
     </div>
   </div>
@@ -225,87 +234,21 @@
   <div id="page-notice" class="page-section">
     <div class="container-box">
       <h2>📢 사이드 공지 생성기</h2>
- <div id="notice-grid" class="notice-grid"></div>
-
-<div id="notice-input-section"
-     style="display:none; margin-top:20px; padding:20px;
-            background:var(--input-bg); border-radius:14px; margin-bottom:20px;">
-
-  <!-- 🔴 범죄자 정보 -->
-  <div style="margin-bottom:20px;">
-    <div style="font-weight:900; margin-bottom:8px; color:var(--accent-red);">
-      🚨 범죄자 정보
-    </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-      <input
-        type="text"
-        id="criminal-name"
-        placeholder="범죄자 닉네임"
-        oninput="updateNoticePreview()"
-      >
-      <input
-        type="text"
-        id="criminal-uid"
-        placeholder="범죄자 고유번호"
-        oninput="updateNoticePreview()"
-      >
-    </div>
-  </div>
-
-<!-- 🎯 경찰 스나이퍼 사용자 (영장 전용) -->
-<div id="sniper-section"
-     style="margin-bottom:20px; display:none;">
-
-  <div style="font-weight:900; margin-bottom:8px; color:var(--accent-blue);">
-    🎯 경찰 스나이퍼 사용자
-  </div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-    <input
-      type="text"
-      id="notice-sniper-name"
-      placeholder="스나이퍼 닉네임"
-      oninput="updateNoticePreview()"
-    >
-    <input
-      type="text"
-      id="notice-sniper-uid"
-      placeholder="스나이퍼 고유번호"
-      oninput="updateNoticePreview()"
-    >
-  </div>
-</div>
-
-
-  <!-- 🟣 팩션 -->
-  <div id="faction-section" style="display:none;">
-    <div style="font-weight:900; margin-bottom:8px; color:#8e44ad;">
-      🏢 영장 진행 팩션
-    </div>
-    <input
-      type="text"
-      id="warrant-faction-name"
-      placeholder="팩션 이름 (예: 꿀벌 경찰청)"
-      oninput="updateNoticePreview()"
-    >
-  </div>
-
-</div>
-
-<textarea id="notice-preview"
-          style="height:350px; text-align:left; padding:20px;
-                 line-height:1.6; margin-top:20px; font-weight:bold;">
-</textarea>
-
-<button class="submit-btn"
-        style="background:var(--accent-blue);"
-        onclick="copyNotice()">📋 복사하기</button>
+      <div id="notice-grid" class="notice-grid"></div>
+      <div id="notice-input-section" style="display: none; margin-top: 20px; padding: 15px; background: var(--input-bg); border-radius: 12px; margin-bottom: 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <input type="text" id="notice-uid" placeholder="고유번호" onchange="updateNoticePreview()" style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--container-bg); color: var(--text-main); font-size: 14px;">
+          <input type="text" id="notice-name" placeholder="닉네임" onchange="updateNoticePreview()" style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--container-bg); color: var(--text-main); font-size: 14px;">
+        </div>
+      </div>
+      <textarea id="notice-preview" style="height: 350px; text-align: left; padding: 20px; line-height: 1.6; margin-top:20px; font-weight: bold; font-family: 'Pretendard', sans-serif;"></textarea>
+      <button class="submit-btn" style="background: var(--accent-blue);" onclick="copyNotice()">📋 복사하기</button>
     </div>
   </div>
 
   <script>
     // ⚠️ 구글 웹 앱 URL을 여기에 붙여넣으세요.
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwuqSAQwCoE4cUUda2cMrMJD9lNDIYd-UpgFdF9TSJGXTkSBr4siaAGwrN5zo4XHSCa/exec"; 
+    const SCRIPT_URL = "URL"; 
     let selectedRes = "";
     let selectedStory = null;
     let selectedNotice = null;
@@ -439,58 +382,21 @@
     function getNoticeTemplates() {
         const name = localStorage.getItem('myName') || "미입력";
         const uid = localStorage.getItem('myUid') || "미입력";
-            // 범죄자
-        const criminalName =
-        document.getElementById('criminal-name')?.value || '미입력';
-        const criminalUid =
-        document.getElementById('criminal-uid')?.value || '미입력';
-
-           // 스나이퍼
-         const sniperName =
-        document.getElementById('notice-sniper-name')?.value || '미입력';
-        const sniperUid =
-        document.getElementById('notice-sniper-uid')?.value || '미입력';
-
-          // 팩션
-        const factionName =
-        document.getElementById('warrant-faction-name')?.value || '미입력';
-
-         // 시간
+        const inputName = document.getElementById('notice-name')?.value || name;
+        const inputUid = document.getElementById('notice-uid')?.value || uid;
         const attendanceTime = getAttendanceTime();
         const currentTime = getCurrentTime();
         const attendanceTime30 = getAttendanceTime30();
-
-
+        
         return {
-       "출석 공지":
-`/경찰청 꿀벌 경찰청에서 안내드립니다.
-${criminalName}(${criminalUid})님
-${attendanceTime} 까지 경찰청 사유지로 출석 바랍니다.
-- 꿀벌 경찰청 -`,
-
-        "수배 공지":
-`/경찰청 꿀벌 경찰청에서 안내드립니다.
-닉네임 : ${criminalName}
-고유번호 : ${criminalUid}
-님 출석 불응 하셔서
-현재시각: ${currentTime} ~ ${attendanceTime30} (30분)
-까지 수배RP 진행됩니다.
-- 꿀벌 경찰청 -`,
-
-        "영장 공지":
-`/경찰청 꿀벌 경찰청에서 안내드립니다.
-현 시간 ${currentTime} 부터 ${attendanceTime30} 까지 30분간
-${factionName} 사유지에서 영장RP 진행하겠습니다.
-
-영장 대상자
-닉네임 : ${criminalName}
-고유번호 : ${criminalUid}
-
-경찰 스나이퍼 사용자
-닉네임 : ${sniperName}
-고유번호 : ${sniperUid}
-- 꿀벌 경찰청 -`
-
+            "보호구역": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 보호구역 및 보호구역 인근 인도에 주차된 차량은 발견 즉시 압류 대상이며, 별도의 사전 고지 없이 즉시 압류를 진행합니다. 본 조치는 규정에 따른 정상 집행입니다.`, 
+            "2분후 방치차량": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 차량 방치로 확인되어 2분 고지 후 압류를 진행합니다. 본 조치는 규정에 따른 정상 집행입니다.`, 
+            "오프라인 방치": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 해당 차량은 오프라인 상태에서 방치된 차량으로 확인되어 별도의 사전 고지 없이 즉시 압류를 진행합니다. 본 조치는 내부 규정에 따른 정상 집행입니다.`, 
+            "범죄차량": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 해당 차량은 범죄에 연루된 차량으로 확인되어 별도의 사전 고지 없이 즉시 압류를 진행합니다. 본 조치는 규정에 따른 정상 집행입니다.`, 
+            "관리자구금": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 관리자 구금으로 인해 운전자가 차량을 이동할 수 없는 상태로 확인되어 별도의 사전 고지 없이 즉시 압류를 진행합니다. 본 조치는 차량 방치 방지 및 원활한 서버 운영을 위한 정상 집행입니다.`, 
+            "사유지": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 해당 차량은 사유지 내 불법 주차로 확인되어 사유지 관계자의 요청에 따라 압류 조치를 진행합니다. 본 조치는 규정에 따른 정상 집행입니다.`, 
+            "폭파차량": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 해당 차량은 수리 불가 상태(폭파 차량)로 확인되어 압류 조치를 진행합니다. 이상 발생 시 렉카팀으로 문의 바랍니다.`, 
+            "물빠차량": `/렉카공지 스피드렉카 안내드립니다. ${inputName}(${inputUid})님, 해당 차량은 물에 잠겨 수리가 불가능한 상태(물빠 차량)로 확인되었습니다. 규정에 따라 해당 차량은 압류 조치가 진행되며, 관련 문의 사항이 있으신 경우 렉카팀으로 문의해 주시기 바랍니다.`, 
         };
     }
 
@@ -529,31 +435,17 @@ ${factionName} 사유지에서 영장RP 진행하겠습니다.
                 // 현재 선택된 공지 저장
                 selectedNotice = k;
                 
-const inputSection = document.getElementById('notice-input-section');
-const sniperSection = document.getElementById('sniper-section');
-const factionSection = document.getElementById('faction-section');
-
-if (k === '출석 공지' || k === '수배 공지') {
-    // 출석 / 수배
-    inputSection.style.display = 'block';
-    sniperSection.style.display = 'none';
-    factionSection.style.display = 'none';
-
-} else if (k === '영장 공지') {
-    // 영장
-    inputSection.style.display = 'block';
-    sniperSection.style.display = 'block';
-    factionSection.style.display = 'block';
-
-} else {
-    // 기타 공지
-    inputSection.style.display = 'none';
-    sniperSection.style.display = 'none';
-    factionSection.style.display = 'none';
-}
-
-updateNoticePreview();
-
+                // 출석 공지 또는 수배 공지일 때 입력칸 표시
+                const inputSection = document.getElementById('notice-input-section');
+                if(k === '출석 공지' || k === '수배 공지') {
+                    inputSection.style.display = 'block';
+                    document.getElementById('notice-uid').value = localStorage.getItem('myUid') || '';
+                    document.getElementById('notice-name').value = localStorage.getItem('myName') || '';
+                } else {
+                    inputSection.style.display = 'none';
+                }
+                
+                updateNoticePreview();
             };
             g.appendChild(b);
         }
@@ -604,11 +496,11 @@ updateNoticePreview();
       let time = baseTime;
 
       if (bail > 0) {
-        money += bail * 10000000;
+        money += bail * 500000;
         time = Math.max(0, baseTime - bail);
       }
 
-      if (baseTime >= 0) time = Math.max(0, time); else time = Math.max(0, time);
+      if (baseTime >= 5) time = Math.max(5, time); else time = Math.max(0, time);
       
       // ATM이고 피크모드일 때는 0분 허용
       if(isPeakMode && Array.from(document.querySelectorAll('#tab-story .calc-check:checked')).some(c => c.parentElement.innerText.includes('ATM'))) {
